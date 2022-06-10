@@ -1,7 +1,14 @@
+default: &default
+  host: <%= ENV.fetch("DATABASE_HOST") { "localhost" } %>
+  port: <%= ENV.fetch("DATABASE_PORT") { 5432 } %>
+  username: <%= ENV.fetch("DATABASE_USERNAME") { "postgres" } %>
+  password: <%= ENV.fetch("DATABASE_PASSWORD") { "postgres" } %>
+
 development:
+  <<: *default
   prepared_statements: false
   adapter: postgresql
-  database: <%= ENV['DISCOURSE_DEV_DB'] || 'discourse_development' %>
+  database: <%= ENV['DISCOURSE_DEV_DB'] || 'thc_discourse_development' %>
   min_messages: warning
   pool: 5
   timeout: 5000
@@ -20,35 +27,21 @@ development:
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
-
-<%
-  test_db = ENV["RAILS_DB"]
-  if !test_db.present?
-    test_db = "discourse_test"
-
-    if num = ENV["TEST_ENV_NUMBER"]
-      num = num.presence || "1"
-      test_db += "_#{num}"
-    end
-  end
-%>
-
 test:
+  <<: *default
   prepared_statements: false
   adapter: postgresql
-  database: <%= test_db %>
+  database: thc_discourse_test
   min_messages: warning
   pool: 5
   timeout: 5000
   advisory_locks: false # Disable until https://github.com/rails/rails/issues/40029 has been resolved.
-  host_names:
-    - test.localhost
 
 # profile db is used for benchmarking using the script/bench.rb script
 profile:
   prepared_statements: false
   adapter: postgresql
-  database: discourse_profile
+  database: thc_discourse_profile
   min_messages: warning
   pool: 5
   timeout: 5000
