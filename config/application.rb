@@ -27,8 +27,23 @@ require_relative '../lib/discourse_plugin_registry'
 
 require_relative '../lib/plugin_gem'
 
+
+if defined?(Bundler)
+  bundler_groups = [:default]
+
+  if !Rails.env.production?
+    bundler_groups = bundler_groups.concat(Rails.groups(
+      assets: %w(development test profile)
+    ))
+  end
+
+  Bundler.require(*bundler_groups)
+  Dotenv::Railtie.load
+end
+
 # Global config
 require_relative '../app/models/global_setting'
+
 GlobalSetting.configure!
 if GlobalSetting.load_plugins?
   # Support for plugins to register custom setting providers. They can do this
@@ -62,18 +77,6 @@ require 'pry-rails' if Rails.env.development?
 require 'discourse_fonts'
 
 require_relative '../lib/ember_cli'
-
-if defined?(Bundler)
-  bundler_groups = [:default]
-
-  if !Rails.env.production?
-    bundler_groups = bundler_groups.concat(Rails.groups(
-      assets: %w(development test profile)
-    ))
-  end
-
-  Bundler.require(*bundler_groups)
-end
 
 require_relative '../lib/require_dependency_backward_compatibility'
 
