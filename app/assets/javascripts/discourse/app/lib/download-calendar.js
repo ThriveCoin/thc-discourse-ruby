@@ -22,7 +22,7 @@ export function downloadCalendar(title, dates) {
 }
 
 export function downloadIcs(title, dates) {
-  const REMOVE_FILE_AFTER = 20_000;
+  const REMOVE_FILE_AFTER = 20000;
   const file = new File([generateIcsData(title, dates)], {
     type: "text/plain",
   });
