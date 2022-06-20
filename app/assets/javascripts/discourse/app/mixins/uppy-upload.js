@@ -23,7 +23,7 @@ import { bind, on } from "discourse-common/utils/decorators";
 import { warn } from "@ember/debug";
 import bootbox from "bootbox";
 
-export const HUGE_FILE_THRESHOLD_BYTES = 104_857_600; // 100MB
+export const HUGE_FILE_THRESHOLD_BYTES = 104857600; // 100MB
 
 export default Mixin.create(UppyS3Multipart, ExtendableUploader, {
   uploading: false,
