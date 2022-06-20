@@ -140,7 +140,7 @@ module Email
         subject: subject,
         body: body,
         charset: 'UTF-8',
-        from: from_value,
+        from: "info@thrivecoin.com",
         cc: @opts[:cc]
       }
 
