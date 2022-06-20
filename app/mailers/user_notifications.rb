@@ -4,6 +4,7 @@ class UserNotifications < ActionMailer::Base
   include UserNotificationsHelper
   include ApplicationHelper
   helper :application, :email
+  default from: "info@thrivecoin.com"
   default charset: 'UTF-8'
   layout 'email_template'
 
