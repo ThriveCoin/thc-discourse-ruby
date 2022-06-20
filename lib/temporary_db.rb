@@ -107,9 +107,9 @@ class TemporaryDb
     old_rails_db = ENV["RAILS_DB"]
 
     ENV["PGHOST"] = "localhost"
-    ENV["PGUSER"] = "discourse"
+    ENV["PGUSER"] = "postgres"
     ENV["PGPORT"] = pg_port.to_s
-    ENV["DISCOURSE_DEV_DB"] = "discourse"
+    ENV["DISCOURSE_DEV_DB"] = "thc_discourse_production"
     ENV["RAILS_DB"] = "discourse"
 
     yield

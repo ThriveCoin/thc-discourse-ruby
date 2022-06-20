@@ -169,7 +169,7 @@ task "themes:isolated_test" => :environment do |t, args|
   ENV["PGPORT"] = db.pg_port.to_s
   ENV["PGHOST"] = "localhost"
   ENV["QUNIT_RAILS_ENV"] = "development"
-  ENV["DISCOURSE_DEV_DB"] = "discourse"
+  ENV["DISCOURSE_DEV_DB"] = "thc_discourse_production"
   ENV["DISCOURSE_REDIS_PORT"] = redis.port.to_s
 
   count = 0
