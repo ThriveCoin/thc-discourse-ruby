@@ -8,7 +8,7 @@ production:
   <<: *default
   prepared_statements: false
   adapter: postgresql
-  database: <%= ENV['DISCOURSE_DEV_DB'] || 'thc_discourse_production' %>
+  database: thc_discourse_production
   min_messages: warning
   pool: 5
   timeout: 5000
@@ -28,7 +28,7 @@ development:
   <<: *default
   prepared_statements: false
   adapter: postgresql
-  database: <%= ENV['DISCOURSE_DEV_DB'] || 'thc_discourse_development' %>
+  database: thc_discourse_development
   min_messages: warning
   pool: 5
   timeout: 5000
