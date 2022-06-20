@@ -13,7 +13,6 @@ class EmailToken < ActiveRecord::Base
   after_initialize do
     if self.token_hash.blank?
       @token ||= SecureRandom.hex
-      puts "Creating the token token: #{@token}"
       self.token_hash = self.class.hash_token(@token)
     end
   end
