@@ -176,7 +176,7 @@ const Report = EmberObject.extend({
     higherIsBetter
   ) {
     return this._computeTrend(
-      prev30Days ?? prev_period,
+      prev30Days ? prev30Days : prev_period,
       lastThirtyDaysCount,
       higherIsBetter
     );
@@ -252,13 +252,13 @@ const Report = EmberObject.extend({
 
   @discourseComputed("prev30Days", "prev_period")
   canDisplayTrendIcon(prev30Days, prev_period) {
-    return prev30Days ?? prev_period;
+    return prev30Days ? prev30Days : prev_period;
   },
 
   @discourseComputed("prev30Days", "prev_period", "lastThirtyDaysCount")
   thirtyDaysCountTitle(prev30Days, prev_period, lastThirtyDaysCount) {
     return this.changeTitle(
-      prev30Days ?? prev_period,
+      prev30Days ? prev30Days : prev_period,
       lastThirtyDaysCount,
       "in the previous 30 day period"
     );

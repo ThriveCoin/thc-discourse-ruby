@@ -57,7 +57,7 @@ export default Component.extend(CardContentsBase, CanCheckEmails, CleansUp, {
 
   @discourseComputed("user.status")
   userStatusEmoji() {
-    const emoji = this.user.status.emoji ?? "mega";
+    const emoji = this.user.status.emoji ? this.user.status.emoji : "mega";
     return emojiUnescape(`:${emoji}:`);
   },
 
